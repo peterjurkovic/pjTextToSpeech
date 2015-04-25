@@ -7,6 +7,11 @@
   ],
   "homepage": "https://github.com/peterjurkovic/pjTextToSpeach.git",
   "license": "MIT",
+  "keywords" : [
+    "text-2-speach",
+    "tts",
+    "text-to-speach"
+  ],
   "authors": [
     "Peter Jurkovic"
   ],

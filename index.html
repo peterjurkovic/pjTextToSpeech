@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="row">
-            <form name="tts" >
+            <form name="ttsForm" >
             <div class="col-md-4">
                <input class="form-control"
                       type="text"
@@ -47,7 +47,7 @@
                       maxlength="100"
                       required
                       name="val"  />
-                <p class="alert alert-danger" ng-if="tts.val.$invalid">
+                <p class="alert alert-danger" ng-if="ttsForm.val.$invalid">
                     <span>Type at least 3 characters</span>
                 </p>
             </div>
@@ -63,26 +63,23 @@
             </div>
             </form>
         </div>
+        <div class="container">
+            <h2>Installation</h2>
+            This is simple Text-2-Speach AngularJS module, based on Google Text-to-Speach API.
+            This particular implementation depends on
 
-        <div class="row">
-        <div class="col-md-12">
-            <p>
-                This is simple Text-2-Speach AngularJS module, based on Google Text-to-Speach API.
-                This particular implementation depends on
-            </p>
-        </div>
         </div>
     </div>
 
 
     </div>
     <script src="bower_components/angular/angular.js"></script>
-    <!--  <script src="dist/pjToast.min.js"></script>-->
-
+    <script src="pjTextToSpeach.min.js"></script>
+    <!--
    <script src="src/js/module.js"></script>
    <script src="src/js/directives.js"></script>
    <script src="src/js/services.js"></script>
-
+-->
 
     <script src="app.js"></script>
     </div>

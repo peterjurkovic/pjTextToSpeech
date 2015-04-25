@@ -20,7 +20,11 @@ angular.module('pjTts.directives', ['pjTts.factories'])
                     if(!scope.tts){
                         scope.tts = new TTSAudio();
                     }
-                    scope.tts.speak(scope.text, scope.lang, new Date().getTime());
+
+                    scope.tts.speak({
+                        text : scope.text,
+                        lang : scope.lang
+                    });
                 };
 
 
@@ -38,15 +42,15 @@ angular.module('pjTts.directives', ['pjTts.factories'])
 'use strict';
 
 angular.module('pjTts.factories', [])
-    .factory('TTSAudio' , ['$log', '$timeout', '$interval', '$window', 'AudioLoaderService',
-        function($log, $timeout, $interval, $window, AudioLoaderService ) {
+    .factory('TTSAudio' , ['$log', '$timeout', '$interval', '$window', 'AudioLoaderService', '$rootScope', 'TTS_EVENTS',
+        function($log, $timeout, $interval, $window, AudioLoaderService, $rootScope, TTS_EVENTS) {
         return function(){
             var isSupported = angular.isFunction($window.Audio);
 
             var that = this,
                 isLoaded = false,
                 watcher = false,
-                stemp = null,
+                cachedVal = null,
                 audio = isSupported ? new $window.Audio() : false;
 
             that.$pending = false;
@@ -55,7 +59,7 @@ angular.module('pjTts.factories', [])
 
             // public methods
 
-            that.speak = function(text, lang, id){
+            that.speak = function(params){
 
                 function play(){
                     $timeout(function(){
@@ -63,7 +67,11 @@ angular.module('pjTts.factories', [])
                         if(!watcher){
                             watcher = $interval(function(){
                                 that.$pending = isLoaded && !audio.paused;
-                            }, 100);
+                                if(!that.$pending){
+                                    $rootScope.$broadcast(TTS_EVENTS.SUCCESS);
+                                    that.clean();
+                                }
+                            }, 50);
                         }
                     },1);
                 }
@@ -77,6 +85,11 @@ angular.module('pjTts.factories', [])
 
                 function handleError(res){
                     that.$hasError = true;
+                    $rootScope.$broadcast(TTS_EVENTS.FAILED);
+                }
+
+                function getCurrentVal(){
+                    return params.text +"#"+ params.lang;
                 }
 
 
@@ -86,15 +99,18 @@ angular.module('pjTts.factories', [])
                     return;
                 }
 
-                if(!isLoaded || stemp !== text +""+ lang){
+                if(!isLoaded || cachedVal !== getCurrentVal()){
                     that.clean();
+                    $rootScope.$broadcast(TTS_EVENTS.PENDING);
                     that.$pending = true;
-                    stemp = text +""+ lang;
-                    AudioLoaderService.load({text: text, lang: lang, id : id})
+                    cachedVal = getCurrentVal();
+                    AudioLoaderService.load(params)
                     .then( handleSuccess, handleError );
                 }else{
                     play();
                 }
+
+
             };
 
             that.clean = function(){
@@ -105,10 +121,9 @@ angular.module('pjTts.factories', [])
             };
         };
     }])
-    .service('AudioLoaderService' , ['$log', '$http', 'TTSConfig', function($log, $http, TTSConfig) {
+    .service('AudioLoaderService' , ['$http', 'TTSConfig', function( $http, TTSConfig) {
 
         this.load = function( params ){
-            $log.info('loading audio file path: ' + TTSConfig.url);
             return $http({
                 url : TTSConfig.url,
                 method : 'GET',
@@ -127,4 +142,9 @@ angular.module('pjTts', [
 )
 .value('TTSConfig', {
     url : 'http://drilapp.dev/api/v1/tts'
+})
+.constant('TTS_EVENTS', {
+        PENDING: 'tts-pending',
+        SUCCESS: 'tts-success',
+        FAILED: 'tts-failed'
 });
