@@ -1,0 +1,87 @@
+<!DOCTYPE html >
+<html ng-app="ToastApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>pjToast - AngularJS Toast notifications</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="src/css/pjToast.css"/>
+
+</head>
+<body ng-controller="ToastController as ctrl">
+    <div class="container">
+    <h1>pjToast notifications</h1>
+
+        <p>
+            pjToast is a simple Angular module for toast notifications. This Toast notification is inspired by
+            <strong><a href="http://tamerayd.in/ngToast/" target="_blank">ngToast</a></strong> with following significant differences:
+        </p>
+
+    <ul>
+        <li>The notification message is positioned absolute (to the center of screen)</li>
+        <li>Only one message is shown in given time (other additional messages are in the queue)</li>
+    </ul>
+
+<div class="container">
+    <button ng-click="successToast()" type="button" class="btn btn-success">Success Toast message</button>
+</div>
+<br />
+<pre class="prettyprint linenums languague-javascript">
+    app.controller('ToastController', function(Toast){
+        Toast.success('This is success Toast message!');
+    });
+</pre>
+        <div class="container">
+            <button ng-click="infoToast()" type="button" class="btn btn-info">Info Toast message</button>
+        </div>
+        <br />
+<pre class="prettyprint linenums languague-javascript">
+    app.controller('ToastController', function(Toast){
+        Toast.info('This is info Toast message!');
+    });
+</pre>
+<div class="container">
+    <button ng-click="warningToast()" type="button" class="btn btn-warning">Warning Toast message</button>
+</div>
+<br />
+<pre class="prettyprint linenums languague-javascript">
+    app.controller('ToastController', function(Toast){
+        Toast.warning('This is warning Toast message!');
+    });
+</pre>
+<div class="container">
+    <button ng-click="dangerToast()" type="button" class="btn btn-danger">Danger Toast message</button>
+</div>
+<br />
+<pre class="prettyprint linenums languague-javascript">
+    app.controller('ToastController', function(Toast){
+        Toast.danger('This is danger Toast message!');
+    });
+</pre>
+
+
+
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+    <toast></toast>
+    </div>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <!--  <script src="dist/pjToast.min.js"></script>-->
+
+   <script src="src/js/module.js"></script>
+   <script src="src/js/directives.js"></script>
+   <script src="src/js/services.js"></script>
+
+
+    <script src="app.js"></script>
+    </div>
+</body>
+</html>

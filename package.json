@@ -1,0 +1,33 @@
+{
+  "name": "pjTextToSpeach",
+  "version": "1.0.0",
+  "description": "AngularJS Text-to-Speach",
+  "main": "pjTextToSpeach.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peterjurkovic/pjTextToSpeach.git"
+  },
+  "keywords": [
+    "angular",
+    "tts",
+    "text-to-Speach"
+  ],
+  "author": "Peter Jurkovic (http://peterjurkovic.com)",
+  "license": {
+    "type": "MIT",
+    "url": "http://tameraydin.mit-license.org/"
+  },
+  "readmeFilename": "readme.md",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^2.2.0",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "~0.5.1",
+    "grunt-contrib-cssmin": "~0.12.2",
+    "grunt-contrib-jshint": "~0.11.1",
+    "grunt-contrib-uglify": "~0.7.0",
+    "grunt-contrib-copy": "~0.6.0",
+    "grunt-cssbeautifier": "^0.1.2",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "pjTextToSpeach",
+  "description": "AngularJS Text-to-Speach",
+  "version": "1.0.0",
+  "main": [
+    "pjTextToSpeach.js"
+  ],
+  "homepage": "https://github.com/peterjurkovic/pjTextToSpeach.git",
+  "license": "MIT",
+  "authors": [
+    "Peter Jurkovic"
+  ],
+   "dependencies": {
+    "angular": ">=1.3.0 <=1.4.0"
+  },
+  "devDependencies": {
+    "bootstrap": "~3.3.2"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app",
+    "src",
+    "tmp",
+    ".editorconfig",
+    ".gitignore",
+    ".gitattributes",
+    ".jshintrc",
+    ".travis.yml",
+    "Gruntfile.js",
+    "package.json",
+    "index.html",
+    "karma.conf.js",
+    "app.js"
+  ]
+}
