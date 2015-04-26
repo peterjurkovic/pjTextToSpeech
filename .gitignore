@@ -2,7 +2,7 @@ logs/*
 !.gitkeep
 node_modules/
 bower_components/
-tmp
+tmp/
 .DS_Store
 .idea
 tts-backend/cache/
