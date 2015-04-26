@@ -16,8 +16,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'bower_components/jquery/dist/jquery.min.js',
-        //'bower_components/jasmine-jquery/lib/jasmine-jquery.js',
         'bower_components/angular/angular.min.js',
         'bower_components/angular-mocks/angular-mocks.js',
         'src/js/*.js',
@@ -50,7 +48,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false,
+    singleRun: true,
 
     colors: true,
 
