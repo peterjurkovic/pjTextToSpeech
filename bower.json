@@ -7,7 +7,7 @@
   ],
   "homepage": "https://github.com/peterjurkovic/pjTextToSpeach.git",
   "license": "MIT",
-  "keywords" : [
+  "keywords": [
     "text-2-speach",
     "tts",
     "text-to-speach"
@@ -15,11 +15,13 @@
   "authors": [
     "Peter Jurkovic"
   ],
-   "dependencies": {
+  "dependencies": {
     "angular": ">=1.3.0 <=1.4.0"
   },
   "devDependencies": {
-    "bootstrap": "~3.3.2"
+    "bootstrap": "~3.3.2",
+    "jasmine-jquery": "~2.1.0",
+    "angular-mocks": ">=1.3.0 <=1.4.0"
   },
   "ignore": [
     "**/.*",

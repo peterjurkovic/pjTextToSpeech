@@ -6,8 +6,8 @@ angular.module('pjTts.directives', ['pjTts.factories'])
         return {
             restrict: 'E',
             template:   '<div class="pj-tts" ng-click="speak()"><button class="btn btn-primary">'+
-                        '<span ng-if="tts.$pending" class="glyphicon glyphicon glyphicon-refresh"></span>'+
-                        '<span ng-if="!tts.$pending" class="glyphicon glyphicon-volume-down"></span>'+
+                        '<span ng-if="tts.$pending" class="glyphicon glyphicon-refresh"></span>'+
+                        '<span ng-if="!tts || !tts.$pending" class="glyphicon glyphicon-volume-down"></span>'+
                         '</button></div>',
             scope : {
                 ttsText : '@',

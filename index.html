@@ -151,8 +151,8 @@ app.controller('YourController',
     });
 
     // before loading and speaking
-    $scope.$on(TTS_EVENTS.PENDING, function(){
-        $log.info('Speaking ...');
+    $scope.$on(TTS_EVENTS.PENDING, function(text){
+        $log.info('Speaking: ' + text);
     });
 }
                 </code></pre>

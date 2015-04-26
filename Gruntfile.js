@@ -54,7 +54,14 @@ module.exports = function(grunt) {
                 jshintrc: '.jshintrc'
             },
             all: CONF.srcPath + 'js/*.js'
+        },
+
+        karma: {
+            unit: {
+                configFile: 'test/karma.conf.js'
+            }
         }
+
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -64,6 +71,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-cssbeautifier');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-karma');
 
 
     grunt.registerTask('build', [
@@ -74,6 +82,10 @@ module.exports = function(grunt) {
         'cssmin',
         'uglify',
         'copy:fin'
+    ]);
+
+    grunt.registerTask('test', [
+        'karma'
     ]);
 
 }

@@ -84,14 +84,18 @@ class Text2Speach {
 
         // Create dir if not exists 
         if (!is_dir($this->getAbsoluteFileDir())) { 
-            mkdir($this->getAbsoluteFileDir(), 0755) or die('Could not create audio dir: ' . $this->getAbsoluteFileDir()); 
+             if(!mkdir($this->getAbsoluteFileDir(), 0755)){
+                throw new Exception('Could not create audio dir: ' . $this->getAbsoluteFileDir());
+             }
         } 
          
         // Try to set writing permissions for audio dir. 
         if (!is_writable($this->getAbsoluteFileDir())) {  
-            chmod($this->getAbsoluteFileDir(), 0755) or die('Could not set appropriate permissions for audio dir: ' . $this->getAbsoluteFileDir()); 
+            if(!chmod($this->getAbsoluteFileDir(), 0755)){
+                throw new Exception('Could not set appropriate permissions for audio dir: ' . $this->getAbsoluteFileDir());
+            }
+            
         } 
-        
         $filename = md5($lang.$text); 
      
         // Generate unique mp3 file name

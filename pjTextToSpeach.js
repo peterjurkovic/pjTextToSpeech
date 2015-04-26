@@ -6,8 +6,8 @@ angular.module('pjTts.directives', ['pjTts.factories'])
         return {
             restrict: 'E',
             template:   '<div class="pj-tts" ng-click="speak()"><button class="btn btn-primary">'+
-                        '<span ng-if="tts.$pending" class="glyphicon glyphicon glyphicon-refresh"></span>'+
-                        '<span ng-if="!tts.$pending" class="glyphicon glyphicon-volume-down"></span>'+
+                        '<span ng-if="tts.$pending" class="glyphicon glyphicon-refresh"></span>'+
+                        '<span ng-if="!tts || !tts.$pending" class="glyphicon glyphicon-volume-down"></span>'+
                         '</button></div>',
             scope : {
                 ttsText : '@',
@@ -45,20 +45,19 @@ angular.module('pjTts.factories', [])
     .factory('TTSAudio' , ['$log', '$timeout', '$interval', '$window', 'AudioLoaderService', '$rootScope', 'TTS_EVENTS',
         function($log, $timeout, $interval, $window, AudioLoaderService, $rootScope, TTS_EVENTS) {
         return function(){
-            var isSupported = isAuditoSupported();
+            //var isSupported = isAudioSupported();
 
             var self = this,
                 isLoaded = false,
                 watcher = false,
-                cachedVal = null,
-                audio = isSupported ? new $window.Audio() : false;
+                cachedVal = null;
 
             self.$pending = false;
             self.$hasError= false;
 
             // private methods
 
-            function isAuditoSupported(){
+            self.isAudioSupported = function(){
                 if(typeof $window.Audio === 'undefined'){
                     return false;
                 }
@@ -67,9 +66,9 @@ angular.module('pjTts.factories', [])
                     return true;
                 }catch(e){}
                 return false;
-            }
+            };
 
-            // public methods
+            var audio =  self.isAudioSupported() ? new $window.Audio() : false;
 
             self.speak = function(params){
 
@@ -104,22 +103,22 @@ angular.module('pjTts.factories', [])
                     return params.text +"#"+ params.lang;
                 }
 
-
-
-                if(!isSupported){
+                if(!self.isAudioSupported()){
                     $log.warn('HTML5 audio is not supported.');
                     return;
                 }
 
                 if(!angular.isDefined(params) || !params.text.length){
-                    $log.warn('Nothing to speak');
+                    var e = 'Nothing to speak';
+                    $log.warn(e);
+                    $rootScope.$broadcast(TTS_EVENTS.FAILED, e);
                     return;
                 }
 
                 // prevent sends duplicate requests
                 if(!isLoaded || cachedVal !== getCurrentVal()){
                     self.clean();
-                    $rootScope.$broadcast(TTS_EVENTS.PENDING);
+                    $rootScope.$broadcast(TTS_EVENTS.PENDING, params.text);
                     self.$pending = true;
                     cachedVal = getCurrentVal();
                     AudioLoaderService.load(params)
@@ -159,7 +158,7 @@ angular.module('pjTts', [
     ]
 )
 .value('TTSConfig', {
-    url : 'http://drilapp.dev/api/v1/tts'
+    url : ''
 })
 .constant('TTS_EVENTS', {
         PENDING: 'tts-pending',

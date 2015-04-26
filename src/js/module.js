@@ -6,7 +6,7 @@ angular.module('pjTts', [
     ]
 )
 .value('TTSConfig', {
-    url : 'http://drilapp.dev/api/v1/tts'
+    url : ''
 })
 .constant('TTS_EVENTS', {
         PENDING: 'tts-pending',
