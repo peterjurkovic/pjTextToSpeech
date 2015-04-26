@@ -60,7 +60,7 @@ The module don't require `tts` directive. The other usage is injecting `TTSAudio
     });
 
     // triggered after speaking
-    $scope.$on(TTS_EVENTS.PENDING, function(){
+    $scope.$on(TTS_EVENTS.SUCCESS, function(){
         $log.info('Successfully done!')
     });
 
