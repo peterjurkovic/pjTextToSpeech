@@ -1,13 +1,14 @@
 
 'user strict';
 
-var app = angular.module('TTSApp', ['pjTts']);
+    var app = angular.module('TTSApp', ['pjTts']);
 
 app.controller('TTSCtrl', function( $scope, TTS_EVENTS, $log, TTSConfig){
 
-    console.log(TTSConfig);
 
-    TTSConfig.url = 'http://tts.peterjurkovic.com/tts-backend/index.php';
+
+    //TTSConfig.url = 'http://tts.peterjurkovic.com/tts-backend/';
+    TTSConfig.url = 'http://tts.dev/tts-backend/';
 
     $scope.tts = {
         text : 'Hello word',
@@ -33,7 +34,7 @@ app.controller('TTSCtrl', function( $scope, TTS_EVENTS, $log, TTSConfig){
     });
 
     $scope.$on(TTS_EVENTS.ERROR, function(){
-        $log.info('An unexpected error occurred');
+        $log.info('An unexpected error has occurred');
     });
 
     $scope.$on(TTS_EVENTS.PENDING, function(){

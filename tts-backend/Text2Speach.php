@@ -1,4 +1,31 @@
 <?php
+/******************************************************************
+Projectname:   PHP Text 2 Speech Class
+Version:       1.0
+Author:        Radovan Janjic <hi@radovanjanjic.com>
+Link:          https://github.com/uzi88/PHP_Text2Speech
+Last modified: 11 06 2013
+Copyright (C): 2012 IT-radionica.com, All Rights Reserved
+* GNU General Public License (Version 2, June 1991)
+*
+* This program is free software; you can redistribute
+* it and/or modify it under the terms of the GNU
+* General Public License as published by the Free
+* Software Foundation; either version 2 of the License,
+* or (at your option) any later version.
+*
+* This program is distributed in the hope that it will
+* be useful, but WITHOUT ANY WARRANTY; without even the
+* implied warranty of MERCHANTABILITY or FITNESS FOR A
+* PARTICULAR PURPOSE. See the GNU General Public License
+* for more details.
+Description:
+PHP Text 2 Speech Class
+This class converts text to speech using Google text to 
+speech API to transform text to mp3 file which will be 
+downloaded and later used as eg. embed file. 
+
+******************************************************************/
 class Text2Speach { 
      
 
@@ -17,12 +44,6 @@ class Text2Speach {
      * @var    Integer  
      */ 
     var $wordCount = 0; 
-     
-    /** Language of text (ISO 639-1) 
-     * @var    String  
-     * @link https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes 
-     */ 
-    var $lang = 'en'; 
      
     /** Text to speak 
      * @var    String  
@@ -71,7 +92,7 @@ class Text2Speach {
             chmod($this->getAbsoluteFileDir(), 0755) or die('Could not set appropriate permissions for audio dir: ' . $this->getAbsoluteFileDir()); 
         } 
         
-        $filename = md5($text); 
+        $filename = md5($lang.$text); 
      
         // Generate unique mp3 file name
         $file = sprintf($this->mp3File, $this->getAbsoluteFileDir() . $filename); 

@@ -10,8 +10,8 @@ angular.module('pjTts.directives', ['pjTts.factories'])
                         '<span ng-if="!tts.$pending" class="glyphicon glyphicon-volume-down"></span>'+
                         '</button></div>',
             scope : {
-                text : '=',
-                lang : '='
+                ttsText : '@',
+                ttsLang : '@'
             },
             link : function(scope){
 
@@ -22,8 +22,8 @@ angular.module('pjTts.directives', ['pjTts.factories'])
                     }
 
                     scope.tts.speak({
-                        text : scope.text,
-                        lang : scope.lang
+                        text : scope.ttsText,
+                        lang : scope.ttsLang
                     });
                 };
 

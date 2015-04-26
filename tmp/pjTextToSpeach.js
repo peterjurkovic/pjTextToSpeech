@@ -10,8 +10,8 @@ angular.module('pjTts.directives', ['pjTts.factories'])
                         '<span ng-if="!tts.$pending" class="glyphicon glyphicon-volume-down"></span>'+
                         '</button></div>',
             scope : {
-                text : '=',
-                lang : '='
+                ttsText : '=',
+                ttsLang : '='
             },
             link : function(scope){
 
@@ -22,8 +22,8 @@ angular.module('pjTts.directives', ['pjTts.factories'])
                     }
 
                     scope.tts.speak({
-                        text : scope.text,
-                        lang : scope.lang
+                        text : scope.ttsTest,
+                        lang : scope.ttsLang
                     });
                 };
 
@@ -45,31 +45,43 @@ angular.module('pjTts.factories', [])
     .factory('TTSAudio' , ['$log', '$timeout', '$interval', '$window', 'AudioLoaderService', '$rootScope', 'TTS_EVENTS',
         function($log, $timeout, $interval, $window, AudioLoaderService, $rootScope, TTS_EVENTS) {
         return function(){
-            var isSupported = angular.isFunction($window.Audio);
+            var isSupported = isAuditoSupported();
 
-            var that = this,
+            var self = this,
                 isLoaded = false,
                 watcher = false,
                 cachedVal = null,
                 audio = isSupported ? new $window.Audio() : false;
 
-            that.$pending = false;
-            that.$hasError= false;
+            self.$pending = false;
+            self.$hasError= false;
 
+            // private methods
+
+            function isAuditoSupported(){
+                if(typeof $window.Audio === 'undefined'){
+                    return false;
+                }
+                try{
+                    new $window.Audio();
+                    return true;
+                }catch(e){}
+                return false;
+            }
 
             // public methods
 
-            that.speak = function(params){
+            self.speak = function(params){
 
                 function play(){
                     $timeout(function(){
                         audio.play();
                         if(!watcher){
                             watcher = $interval(function(){
-                                that.$pending = isLoaded && !audio.paused;
-                                if(!that.$pending){
+                                self.$pending = isLoaded && !audio.paused;
+                                if(!self.$pending){
                                     $rootScope.$broadcast(TTS_EVENTS.SUCCESS);
-                                    that.clean();
+                                    self.clean();
                                 }
                             }, 50);
                         }
@@ -80,11 +92,11 @@ angular.module('pjTts.factories', [])
                     audio.src = res.data.path;
                     play();
                     isLoaded = true;
-                    that.$hasError = false;
+                    self.$hasError = false;
                 }
 
                 function handleError(res){
-                    that.$hasError = true;
+                    self.$hasError = true;
                     $rootScope.$broadcast(TTS_EVENTS.FAILED);
                 }
 
@@ -99,10 +111,18 @@ angular.module('pjTts.factories', [])
                     return;
                 }
 
+                if(!angular.isDefined(params) || !params.text){
+                    $log.warn('Nothing to speak');
+                    return;
+                }
+
+                params.lang = !params.lang || 'en';
+
+                // prevent sends duplicate requests
                 if(!isLoaded || cachedVal !== getCurrentVal()){
-                    that.clean();
+                    self.clean();
                     $rootScope.$broadcast(TTS_EVENTS.PENDING);
-                    that.$pending = true;
+                    self.$pending = true;
                     cachedVal = getCurrentVal();
                     AudioLoaderService.load(params)
                     .then( handleSuccess, handleError );
@@ -113,7 +133,7 @@ angular.module('pjTts.factories', [])
 
             };
 
-            that.clean = function(){
+            self.clean = function(){
               if(watcher){
                   $interval.cancel( watcher );
                   watcher = false;
