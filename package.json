@@ -1,16 +1,17 @@
 {
-  "name": "pjTextToSpeach",
+  "name": "pjTextToSpeech",
   "version": "1.0.0",
-  "description": "AngularJS Text-to-Speach",
+  "description": "AngularJS Text-to-Speech",
   "main": "pjTextToSpeach.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/peterjurkovic/pjTextToSpeach.git"
+    "url": "https://github.com/peterjurkovic/pjTextToSpeech.git"
   },
   "keywords": [
     "angular",
     "tts",
-    "text-to-Speach"
+    "text-to-Speech",
+    "text-2-Speech"
   ],
   "author": "Peter Jurkovic (http://peterjurkovic.com)",
   "license": {
@@ -35,6 +36,6 @@
     "karma-phantomjs-launcher": "~0.1.4"
   },
   "scripts": {
-    "test": "grunt karma"
+    "test": "grunt test"
   }
 }
