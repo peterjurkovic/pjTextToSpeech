@@ -30,7 +30,7 @@ app.controller('TTSCtrl', function( $scope, $location, TTS_EVENTS, $log, TTSConf
         {"code":"sv","name":"Swedish","nativeName":"svenska"}
     ];
 
-    $scope.$on(TTS_EVENTS.PENDING, function(){
+    $scope.$on(TTS_EVENTS.SUCCESS, function(){
         $log.info('Successfully done!')
     });
 
