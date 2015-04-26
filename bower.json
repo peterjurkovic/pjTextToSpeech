@@ -1,16 +1,16 @@
 {
-  "name": "pjTextToSpeach",
-  "description": "AngularJS Text-to-Speach",
+  "name": "pjTextToSpeech",
+  "description": "AngularJS Text-to-Speech",
   "version": "1.0.1",
   "main": [
-    "pjTextToSpeach.js"
+    "pjTextToSpeech.js"
   ],
   "homepage": "https://github.com/peterjurkovic/pjTextToSpeach.git",
   "license": "MIT",
   "keywords": [
-    "text-2-speach",
+    "text-2-Speech",
     "tts",
-    "text-to-speach"
+    "text-to-Speech"
   ],
   "authors": [
     "Peter Jurkovic"
