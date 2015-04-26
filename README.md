@@ -44,7 +44,60 @@ app.controller('YourController', function( TTSConfig){
  ```
   See the [back-end](https://github.com/peterjurkovic/pjTextToSpeach/tree/master/tts-backend) integration example.
  
+## Usage without directive
+
+The module don't require `tts` directive. The other usage is injecting `TTSAudio` object e.g inside you controller and calling API directly.
  
+ ```
+ app.controller('YourController',
+    function($scope, $log, TTSConfig, TTSAudio, TTS_EVENTS){
+
+    TTSConfig.url = 'http://tts.dev/tts-backend/index.php';
+    var tts = new TTSAudio();
+    tts.speak({
+        text : 'Hello word',
+        lang : 'en'
+    });
+
+    // triggered after speaking
+    $scope.$on(TTS_EVENTS.PENDING, function(){
+        $log.info('Successfully done!')
+    });
+
+    $scope.$on(TTS_EVENTS.ERROR, function(){
+        $log.info('An unexpected error has occurred');
+    });
+
+    // triggered before speaking
+    $scope.$on(TTS_EVENTS.PENDING, function(text){
+        $log.info('Speaking: ' + text);
+    });
+}
+```
+ ## Animated bootstrap button
  
+ The bootstrap button are static by default. If you want achieve effect like in this demo page you have to add following CSS into your page. 
  
- 
+```
+.glyphicon-refresh{
+    animation: spin .7s infinite linear;
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+```
