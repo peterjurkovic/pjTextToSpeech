@@ -10,8 +10,8 @@ angular.module('pjTts.directives', ['pjTts.factories'])
                         '<span ng-if="!tts.$pending" class="glyphicon glyphicon-volume-down"></span>'+
                         '</button></div>',
             scope : {
-                ttsText : '=',
-                ttsLang : '='
+                ttsText : '@',
+                ttsLang : '@'
             },
             link : function(scope){
 
@@ -22,7 +22,7 @@ angular.module('pjTts.directives', ['pjTts.factories'])
                     }
 
                     scope.tts.speak({
-                        text : scope.ttsTest,
+                        text : scope.ttsText,
                         lang : scope.ttsLang
                     });
                 };
@@ -90,8 +90,8 @@ angular.module('pjTts.factories', [])
 
                 function handleSuccess(res){
                     audio.src = res.data.path;
-                    play();
                     isLoaded = true;
+                    play();
                     self.$hasError = false;
                 }
 
@@ -111,12 +111,10 @@ angular.module('pjTts.factories', [])
                     return;
                 }
 
-                if(!angular.isDefined(params) || !params.text){
+                if(!angular.isDefined(params) || !params.text.length){
                     $log.warn('Nothing to speak');
                     return;
                 }
-
-                params.lang = !params.lang || 'en';
 
                 // prevent sends duplicate requests
                 if(!isLoaded || cachedVal !== getCurrentVal()){

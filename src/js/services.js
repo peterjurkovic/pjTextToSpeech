@@ -74,8 +74,7 @@ angular.module('pjTts.factories', [])
                     $log.warn('Nothing to speak');
                     return;
                 }
-                console.log('cachedVal: ' + cachedVal);
-                console.log('getCurrentVal: ' + getCurrentVal());
+
                 // prevent sends duplicate requests
                 if(!isLoaded || cachedVal !== getCurrentVal()){
                     self.clean();
