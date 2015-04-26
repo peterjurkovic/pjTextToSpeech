@@ -3,12 +3,13 @@
 
     var app = angular.module('TTSApp', ['pjTts']);
 
-app.controller('TTSCtrl', function( $scope, TTS_EVENTS, $log, TTSConfig){
+app.controller('TTSCtrl', function( $scope, $location, TTS_EVENTS, $log, TTSConfig){
 
 
-
-    //TTSConfig.url = 'http://tts.peterjurkovic.com/tts-backend/';
-    TTSConfig.url = 'http://tts.dev/tts-backend/';
+    TTSConfig.url =
+        $location.host() === 'tts.dev' ?
+        'http://tts.dev/tts-backend/' :
+        'http://tts.peterjurkovic.com/tts-backend/';
 
     $scope.tts = {
         text : 'Hello word',
