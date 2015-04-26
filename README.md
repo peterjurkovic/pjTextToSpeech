@@ -9,7 +9,7 @@ pjTextToSpeach a simple Text-2-Speach AngularJS module, based on Google Text-to-
 
 **[See Demo](http://tts.peterjurkovic.com/)**
 
-![Text-2-Speech example](http://tts.peterjurkovic.com/tts.png)
+[![Text-2-Speech example](http://tts.peterjurkovic.com/tts.png)](http://tts.peterjurkovic.com/)
 
 ## Instalation
 
