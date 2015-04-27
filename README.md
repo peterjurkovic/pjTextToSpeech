@@ -3,10 +3,6 @@
 
 pjTextToSpeach a simple Text-2-Speach AngularJS module, based on Google Text-to-Speach API.This particular implementation depends on back-end side script which forwarding requests to the Google TTS API. The advantage of this solution is that generated files are cached in predefined folder and Google API is requested only once. 
 
-* The notification message is positioned absolute (to the center of screen)
-* Only one message is shown in given time (other additional messages are in the queue)
-* Bootstrap icons integrated
-
 **[See Demo](http://tts.peterjurkovic.com/)**
 
 [![Text-2-Speech example](http://tts.peterjurkovic.com/tts.png)](http://tts.peterjurkovic.com/)
