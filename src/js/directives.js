@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('pjTts.directives', ['pjTts.factories'])
-.directive('tts', ['$log', 'TTSAudio',
-    function($log, TTSAudio) {
+.directive('tts', ['TTSAudio',
+    function(TTSAudio) {
         return {
             restrict: 'E',
-            template:   '<div class="pj-tts" ng-click="speak()"><button class="btn btn-primary">'+
-                        '<span ng-if="tts.$pending" class="glyphicon glyphicon-refresh"></span>'+
-                        '<span ng-if="!tts || !tts.$pending" class="glyphicon glyphicon-volume-down"></span>'+
-                        '</button></div>',
+            template:   '<button ng-click="speak()" class="pj-tts btn btn-primary">'+
+                        '<span ng-class="tts.$pending && \'glyphicon-refresh\' || \'glyphicon-volume-down\'" class="glyphicon "></span>'+
+                        '</button>',
             scope : {
                 ttsText : '@',
                 ttsLang : '@'
@@ -26,7 +25,6 @@ angular.module('pjTts.directives', ['pjTts.factories'])
                         lang : scope.ttsLang
                     });
                 };
-
 
                  scope.$on('$destroy', function(){
                      if(scope.tts){

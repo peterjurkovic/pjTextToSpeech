@@ -4,7 +4,6 @@ angular.module('pjTts.factories', [])
     .factory('TTSAudio' , ['$log', '$timeout', '$interval', '$window', 'AudioLoaderService', '$rootScope', 'TTS_EVENTS',
         function($log, $timeout, $interval, $window, AudioLoaderService, $rootScope, TTS_EVENTS) {
         return function(){
-            //var isSupported = isAudioSupported();
 
             var self = this,
                 isLoaded = false,
