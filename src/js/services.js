@@ -88,7 +88,7 @@ angular.module('pjTts.factories', [])
 
             };
 
-            self.clean = function(){
+            self.clear = function(){
               if(watcher){
                   $interval.cancel( watcher );
                   watcher = false;
