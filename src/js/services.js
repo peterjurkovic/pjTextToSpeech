@@ -38,7 +38,7 @@ angular.module('pjTts.factories', [])
                                 self.$pending = isLoaded && !audio.paused;
                                 if(!self.$pending){
                                     $rootScope.$broadcast(TTS_EVENTS.SUCCESS);
-                                    self.clean();
+                                    self.clear();
                                 }
                             }, 50);
                         }
@@ -75,7 +75,7 @@ angular.module('pjTts.factories', [])
 
                 // prevent sends duplicate requests
                 if(!isLoaded || cachedVal !== getCurrentVal()){
-                    self.clean();
+                    self.clear();
                     $rootScope.$broadcast(TTS_EVENTS.PENDING, params.text);
                     self.$pending = true;
                     cachedVal = getCurrentVal();
