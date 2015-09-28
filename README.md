@@ -42,7 +42,7 @@ app.controller('YourController', function( TTSConfig){
  
 ## Usage without directive
 
-The module don't require `tts` directive. The other usage is injecting `TTSAudio` object e.g inside you controller and calling API directly.
+The module don't require `tts` directive. The other usage is injecting `TTSAudio` object e.g inside your controller and calling API directly.
  
  ```
  app.controller('YourController',
