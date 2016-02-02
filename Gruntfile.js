@@ -17,11 +17,15 @@ module.exports = function(grunt) {
         concat: {
             dist: {
                 src: [CONF.srcPath + 'js/directives.js',CONF.srcPath + 'js/services.js', CONF.srcPath + 'js/module.js'],
-                dest: CONF.distPath + moduleName + '.tmp.js'
+                dest: CONF.distPath + moduleName + '.js'
             },
             fm : {
-                src: [ CONF.distPath + moduleName + '.tmp.js', CONF.srcPath + 'js/fm.js'],
+                src: [ CONF.distPath + moduleName + '.min.js', CONF.srcPath + 'js/fm.js'],
                 dest: CONF.distPath + moduleName + '.min.js'
+            },
+            fml : {
+                src: [ CONF.distPath + moduleName + '.js', CONF.srcPath + 'js/fm.js'],
+                dest: CONF.distPath + moduleName + '.js'
             }
         },
         copy: {
@@ -49,8 +53,8 @@ module.exports = function(grunt) {
         },
         uglify: {
             build: {
-                src: CONF.distPath + moduleName + '.tmp.js',
-                dest: CONF.distPath + moduleName + '.tmp.js'
+                src: CONF.distPath + moduleName + '.js',
+                dest: CONF.distPath + moduleName + '.min.js'
             }
         },
         jshint: {
@@ -92,6 +96,7 @@ module.exports = function(grunt) {
         'cssmin',
         'uglify',
         'concat:fm',
+        // 'concat:fml',
         'copy:fin'
     ]);
 

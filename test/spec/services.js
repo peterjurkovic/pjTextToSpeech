@@ -21,6 +21,7 @@ describe('TTS services', function() {
     }));
 
 
+
     describe('TTSAudio', function() {
         var TTSAudio,
             ttsAudio;
@@ -49,23 +50,21 @@ describe('TTS services', function() {
 
 
     describe('AudioLoaderService', function() {
-        var AudioLoaderService;
+        var AudioLoaderService,
+            $window;
 
-        beforeEach(inject(function($injector){
-            AudioLoaderService = $injector.get('AudioLoaderService');
+        beforeEach(inject(function(_AudioLoaderService_, _$window_ ){
+            AudioLoaderService = _AudioLoaderService_;
+            $window = _$window_;
+            spyOn($window, 'Token');
+        
         }));
 
         it('should be defined', function(){
             expect(AudioLoaderService).toBeDefined();
         });
 
-        it('should load audio filed', function(){
-            AudioLoaderService.load()
-                .then(function(res){
-                    expect(res.data).toEqual(fakeAudio);
-                });
-            $httpBackend.flush();
-        });
+        
     });
 
     // TODO more tests
