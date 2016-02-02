@@ -17,7 +17,11 @@ module.exports = function(grunt) {
         concat: {
             dist: {
                 src: [CONF.srcPath + 'js/directives.js',CONF.srcPath + 'js/services.js', CONF.srcPath + 'js/module.js'],
-                dest: CONF.distPath + moduleName + '.js'
+                dest: CONF.distPath + moduleName + '.tmp.js'
+            },
+            fm : {
+                src: [ CONF.distPath + moduleName + '.tmp.js', CONF.srcPath + 'js/fm.js'],
+                dest: CONF.distPath + moduleName + '.min.js'
             }
         },
         copy: {
@@ -45,15 +49,21 @@ module.exports = function(grunt) {
         },
         uglify: {
             build: {
-                src: CONF.distPath + moduleName + '.js',
-                dest: CONF.distPath + moduleName + '.min.js'
+                src: CONF.distPath + moduleName + '.tmp.js',
+                dest: CONF.distPath + moduleName + '.tmp.js'
             }
         },
         jshint: {
             options: {
                 jshintrc: '.jshintrc'
             },
-            all: CONF.srcPath + 'js/*.js'
+            files: {
+                src: [
+                    CONF.srcPath + 'js/directives.js' ,
+                    CONF.srcPath + 'js/module.js',
+                    CONF.srcPath + 'js/services.js'
+                ]
+            }
         },
 
         karma: {
@@ -81,6 +91,7 @@ module.exports = function(grunt) {
         'copy:main',
         'cssmin',
         'uglify',
+        'concat:fm',
         'copy:fin'
     ]);
 

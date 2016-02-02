@@ -96,9 +96,10 @@ angular.module('pjTts.factories', [])
             };
         };
     }])
-    .service('AudioLoaderService' , ['$http', 'TTSConfig', function( $http, TTSConfig) {
+    .service('AudioLoaderService' , ['$http', 'TTSConfig', '$window', function( $http, TTSConfig, $window) {
 
         this.load = function( params ){
+            params.token = $window.Token()(params.text);
             return $http({
                 url : TTSConfig.url,
                 method : 'GET',
