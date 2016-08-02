@@ -3,6 +3,10 @@
 
 pjTextToSpeach a simple Text-2-Speach AngularJS module, based on Google Text-to-Speach API.This particular implementation depends on back-end side script which forwarding requests to the Google TTS API. The advantage of this solution is that generated files are cached in predefined folder and Google API is requested only once. 
 
+## EDIT 2016-01-01 Google has introduced a fee for TTS API
+[See Speach API pricing](https://cloud.google.com/speech/?gclid=CjwKEAjwiYG9BRCkgK-G45S323oSJABnykKAnWXAiF2rqThOniASipRu7O_xIAilg8eWzKL9E3n2GhoCkibw_wcB)
+
+
 **[See Demo](http://tts.peterjurkovic.com/index.html)**
 
 [![Text-2-Speech example](http://tts.peterjurkovic.com/tts.png)](http://tts.peterjurkovic.com/)
